@@ -18,11 +18,87 @@ namespace Exercícios
             //ExecutarExercicio4();
             //ExecutarExercicio5();
             //ExecutarExercicio6();
-            ExecutarExercicio7();
+            //ExecutarExercicio7();
+            //ExecutarExercicio8();
+            ExecutarExercicio9();
 
 
             Console.ReadLine(); //faz uma pausa.
         }
+
+        /**
+         * 9. Faça um algoritmo que leia 
+         * "N" números e mostre positivo, negativo 
+         * ou zero para cada número.
+         **/
+        private static void ExecutarExercicio9()
+        {
+            bool deveContinuarLeitura = true;
+
+            while (deveContinuarLeitura)
+            {
+                Console.WriteLine("Digite um número ou 'N' para sair:");
+                string s = Console.ReadLine();
+
+                if (s == "N")
+                {
+                    deveContinuarLeitura = false;
+                }
+                else
+                {
+                    int numero = int.Parse(s);
+
+                    if (numero > 0)
+                    {
+                        Console.WriteLine("O número é positivo.");
+                    }
+                    else if (numero < 0)
+                    {
+                        Console.WriteLine("O número é negativo.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("O número é zero.");
+                    }
+                }
+
+            }
+        }
+
+
+        /**
+         * 8. Faça um algoritmo que leia um número 
+         * e mostre uma mensagem caso este número 
+         * seja maior que 50, menor que 10 ou igual a 20.
+         **/
+        static void ExecutarExercicio8()
+        {
+            Console.WriteLine("Informe um número");
+            string s = Console.ReadLine();
+
+            int numero = int.Parse(s);
+
+            if (numero > 50)
+            {
+                Console.WriteLine("O número {0} é maior do que 50.", numero);
+            }
+            else if (numero < 10)
+            {
+                Console.WriteLine("O número {0} é menor do que 10.", numero);
+            }
+            else if (numero == 20)
+            {
+                Console.WriteLine("O número {0} é igual a 20.", numero);
+            }
+            else
+            {
+                Console.WriteLine("O número não está na faixa desejada.");
+            }
+
+
+        }
+
+
 
         /**
          * 7. Faça um algoritmo que leia um 
