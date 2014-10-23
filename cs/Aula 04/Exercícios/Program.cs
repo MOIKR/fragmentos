@@ -3,11 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Exercícios
 {
     class Program
     {
+
+        //Constantes em C#.
+        public const string JANEIRO = "Janeiro";
+        public const string FEVEREIRO = "Fevereiro";
+        public const string MARCO = "Março";
+        public const string ABRIL = "Abril";
+        public const string MAIO = "Maio";
+        public const string JUNHO = "Junho";
+        public const string JULHO = "Julho";
+        public const string AGOSTO = "Agosto";
+        public const string SETEMBRO = "Setembro";
+        public const string OUTUBRO = "Outubro";
+        public const string NOVEMBRO = "Novembro";
+        public const string DEZEMBRO = "Dezembro";
+        public const string ADICAO = "+";
+        public const string SUBTRACAO = "-";
+        public const string MULTIPLICACAO = "*";
+        public const string DIVISAO = "/";
+
         static void Main(string[] args)
         {
             /* Exercícios de algoritmos estruturados */
@@ -21,10 +41,208 @@ namespace Exercícios
             //ExecutarExercicio7();
             //ExecutarExercicio8();
             //ExecutarExercicio9();
-            ExecutarExercicio10();
+            //ExecutarExercicio10();
+            //ExecutarExercicio11();
+            //ExecutarExercicio12();
+            //ExecutarExercicio13();
+            ExecutarExercicio14();
 
 
             Console.ReadLine(); //faz uma pausa.
+        }
+
+        /**
+         * 14. Dados três valores A, B e C, em 
+         * que A e B são números reais e C é um 
+         * caractere, pede-se para imprimir o resultado 
+         * da operação de A por B se C for um símbolo 
+         * de operador aritmético; caso contrário deve 
+         * ser impresso uma mensagem de operador não 
+         * definido. Tratar erro de divisão por zero 
+         * usando: try{} catch(DivideByZeroException){}.
+         **/
+        private static void ExecutarExercicio14()
+        {
+            Console.WriteLine("Informe o valor A:");
+            string a = Console.ReadLine();
+            Console.WriteLine("Informe o valor B:");
+            string b = Console.ReadLine();
+            Console.WriteLine("Informe o operador:");
+            string operadorDigitado = Console.ReadLine();
+
+                int numeroA = int.Parse(a);
+                int numeroB = int.Parse(b);
+
+                if (ADICAO.Equals(operadorDigitado))
+                {
+                    Console.WriteLine("A adição dos números {0} e {1} é: {2}", numeroA, numeroB, (numeroA + numeroB));
+                }
+                else if (SUBTRACAO.Equals(operadorDigitado))
+                {
+                    Console.WriteLine("A subtração dos números {0} e {1} é: {2}", numeroA, numeroB, (numeroA - numeroB));
+                }
+                else if (MULTIPLICACAO.Equals(operadorDigitado))
+                {
+                    Console.WriteLine("A multiplicação dos números {0} e {1} é: {2}", numeroA, numeroB, (numeroA * numeroB));
+                }
+                else if (DIVISAO.Equals(operadorDigitado))
+                {
+                    try
+                    {
+                        Console.WriteLine("A divisão dos números {0} e {1} é: {2}", numeroA, numeroB, (numeroA / numeroB));
+                    }
+                    catch (DivideByZeroException)
+                    {
+                        Console.WriteLine("Não é permitido a divisão por zero.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Operador não definido!");
+                }
+        }
+
+        /**
+         * 13. Faça um algoritmo que leia o número 
+         * do mês e mostre o mês correspondente. 
+         * Valide mês inválido. (usar switch/case). 
+         **/
+        private static void ExecutarExercicio13()
+        {
+            Console.WriteLine("Informe número do mês:");
+            string s = Console.ReadLine();
+
+            try
+            {
+                int mes = int.Parse(s);
+
+                if (mes < 1 || mes > 12)
+                {
+                    throw new Exception("O valor informado é inválido!");
+                }
+
+                switch (mes)
+                {
+                    case 1 :
+                        Console.WriteLine(JANEIRO);
+                        break;
+                    case 2:
+                        Console.WriteLine(FEVEREIRO);
+                        break;
+                    case 3:
+                        Console.WriteLine(MARCO);
+                        break;
+                    case 4:
+                        Console.WriteLine(ABRIL);
+                        break;
+                    case 5:
+                        Console.WriteLine(MAIO);
+                        break;
+                    case 6:
+                        Console.WriteLine(JUNHO);
+                        break;
+                    case 7:
+                        Console.WriteLine(JULHO);
+                        break;
+                    case 8:
+                        Console.WriteLine(AGOSTO);
+                        break;
+                    case 9:
+                        Console.WriteLine(SETEMBRO);
+                        break;
+                    case 10:
+                        Console.WriteLine(OUTUBRO);
+                        break;
+                    case 11:
+                        Console.WriteLine(NOVEMBRO);
+                        break;
+                    case 12:
+                        Console.WriteLine(DEZEMBRO);
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        /**
+         * 12. Escrever um algoritmo que leia três valores 
+         * inteiros distintos e os escreva em ordem crescente. 
+         * (ver http://pt.wikipedia.org/wiki/Bubble_sort)
+         **/
+        private static void ExecutarExercicio12()
+        {
+            Console.WriteLine("Informe o primeiro valor:");
+            string s1 = Console.ReadLine();
+            Console.WriteLine("Informe o segundo valor:");
+            string s2 = Console.ReadLine();
+            Console.WriteLine("Informe o terceiro valor:");
+            string s3 = Console.ReadLine();
+
+            Console.WriteLine("\n****** LISTA ORDENADA ******");
+
+            int[] vetorDesordenado = new int[3];
+            vetorDesordenado[0] = int.Parse(s1);
+            vetorDesordenado[1] = int.Parse(s2);
+            vetorDesordenado[2] = int.Parse(s3);
+
+            int[] vetorOrdenado = OrdenarPeloMetodoBolha(vetorDesordenado);
+
+            for (int i = 0; i < vetorOrdenado.Length; ++i)
+            {
+                Console.WriteLine(vetorOrdenado[i]);
+            }
+           
+        }
+
+        private static int[] OrdenarPeloMetodoBolha(int[] vetor) 
+        {
+            int variavelTemporaria;
+
+            for (int i = vetor.Length - 1; i >= 1; i--)
+            {  
+                for( int j=0; j < i ; j++) {
+                    if (vetor[j] > vetor[j + 1])
+                    {
+                        variavelTemporaria = vetor[j];
+                        vetor[j] = vetor[j + 1];
+                        vetor[j + 1] = variavelTemporaria;
+                    }
+                }
+            }
+            return vetor;
+        }
+
+        /**
+         * Faça um algoritmo que leia dois números e 
+         * identifique se eles são iguais ou diferentes. 
+         * Caso sejam iguais imprima uma mensagem dizendo 
+         * que eles são iguais. Caso sejam diferentes, 
+         * informe qual número é o maior, e uma 
+         * mensagem de que eles são diferentes.
+         **/
+        private static void ExecutarExercicio11()
+        {
+            Console.WriteLine("Informe o primeiro número:");
+            string s1 = Console.ReadLine();
+            Console.WriteLine("Informe o segundo número:");
+            string s2 = Console.ReadLine();
+
+            int numero1 = int.Parse(s1);
+            int numero2 = int.Parse(s2);
+
+            if (numero1 == numero2)
+            {
+                Console.WriteLine("Os números são iguais.");
+            }
+            else
+            {
+                int maior = numero1 > numero2 ? numero1 : numero2;
+                int menor = numero1 < numero2 ? numero1 : numero2;
+                Console.WriteLine("Os números são diferentes e o número {0} é maior do que {1}.",maior, menor);
+            }
         }
 
 
